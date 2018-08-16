@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     #region Variables
+    public bool isPaused;
     [Header("PLAYER VARIABLES")]
     [Header("Movement Variables")]
     public float speed = 6f;
@@ -12,7 +13,7 @@ public class CharacterMovement : MonoBehaviour
     public float gravity = 20f;
     private Vector3 moveDirection = Vector3.zero;
     private CharacterController controller;
-    public GameObject camera;
+    public GameObject myCamera;
     [Header("CAM ROTATION VARIABLES")]
     [Header("Rotational Axis")]
     //create a public link to the rotational axis called axis and set a defualt axis
@@ -34,8 +35,10 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        //myCamera = GameObject.Find("Main Camera");
+        myCamera = GameObject.Find("Main Camera");
         spawnPoint = transform.position;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     #endregion
     #region Update
@@ -66,6 +69,7 @@ public class CharacterMovement : MonoBehaviour
                 MouseY();
                 break;
             default:
+                MouseXAndY();
                 break;
         }
         #endregion
@@ -75,27 +79,48 @@ public class CharacterMovement : MonoBehaviour
             transform.position = spawnPoint;
         }
         #endregion
-        
+        #region Pausing
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+        {
+            Time.timeScale = 0;
+            isPaused = true;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+        {
+            Time.timeScale = 1;
+            isPaused = false;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        #endregion
     }
     #endregion
     #region Axis functons
-    void MouseXandY()
+    void MouseXAndY()
     {
-        //float rotation x is equal to our y axis plus the mouse input on the Mouse X times our x sensitivity
-        float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
-        //our rotation Y is plus equals  our mouse input for Mouse Y times Y sensitivity
-        rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+        if (Time.deltaTime == 0)
+        {
+            rotationY = rotationY;
+        }
+        else
+        {
+            //our rotation Y is plus equals  our mouse input for Mouse Y times Y sensitivity
+            rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+        }
         //the rotation Y is clamped using Mathf and we are clamping the y rotation to the Y min and Y max
         rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
         //transform our local position to the nex vector3 rotaion - y rotaion on the x axis and x rotation on the y axis
-        camera.transform.localEulerAngles = new Vector3(-rotationY * Time.deltaTime, 0, 0);
-        transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX * Time.deltaTime, 0);
+        myCamera.transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
+        
+        transform.Rotate(0, Input.GetAxis("Mouse X") * (sensitivityX*100) * Time.deltaTime, 0);
     }
     void MouseX()
     {
-        
-            //transform the rotation on our game objects Y by our Mouse input Mouse X times X sensitivity
-            transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX * Time.deltaTime, 0);
+
+        //transform the rotation on our game objects Y by our Mouse input Mouse X times X sensitivity
+        transform.Rotate(0, Input.GetAxis("Mouse X") * (sensitivityX * 100) * Time.deltaTime, 0);
     }
     void MouseY()
     {
@@ -104,14 +129,19 @@ public class CharacterMovement : MonoBehaviour
         //the rotation Y is clamped using Mathf and we are clamping the y rotation to the Y min and Y max
         rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
         //transform our local position to the nex vector3 rotaion - y rotaion on the x axis and local euler angle Y on the y axis
-        transform.localEulerAngles = new Vector3(-rotationY * Time.deltaTime, 0, 0);
+        myCamera.transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
+        if (Time.deltaTime == 0)
+        {
+            myCamera.transform.localEulerAngles = new Vector3(myCamera.transform.localEulerAngles.y, 0, 0);
+        }
     }
     #endregion
+    
 }
 #region RotationalAxis
 public enum RotationalAxis
 {
-    MouseXandY,
+    MouseXAndY,
     MouseX,
     MouseY
 }
