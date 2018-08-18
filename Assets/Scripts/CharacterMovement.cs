@@ -9,6 +9,8 @@ public class CharacterMovement : MonoBehaviour
     [Header("Movement Variables")]
     public float speed = 6f;//how fast the player can move
     public float jumpSpeed = 8f;//how height the player can jump
+    public float runSpeed;
+    public float runTime;
     public float gravity = 20f;//player's gravity
     private Vector3 moveDirection = Vector3.zero;//direction the player is moving
     private CharacterController controller;//player controller component
@@ -41,6 +43,10 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         #region Movement
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+
+        }
         if (controller.isGrounded)
         {
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));//sets the direction the player is going
@@ -78,23 +84,27 @@ public class CharacterMovement : MonoBehaviour
         #endregion
         #region Pausing
         //pauses the game
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
         {
-            if (isPaused)
-            {
-                Time.timeScale = 1;
-                isPaused = false;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            else
-            {
-                Time.timeScale = 0;
-                isPaused = true;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
+            isPaused = false;
 
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+        {
+            isPaused = true;
+        }
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         #endregion
     }

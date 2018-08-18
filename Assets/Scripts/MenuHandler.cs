@@ -81,6 +81,7 @@ public class MenuHandler : MonoBehaviour
     public void Windowed()
     {
         isFullScreen = fullScreenToggle.isOn;
+        Screen.SetResolution((int)res[resIndex].x, (int)res[resIndex].y, isFullScreen);
     }
     public void ExitGame()
     {
