@@ -135,6 +135,16 @@ namespace Menus
                     forwardText.text = forward.ToString();
                 }
             }
+            if (backward == KeyCode.None)
+            {
+                Debug.Log("KeyCode: " + e.keyCode);
+                if (!(e.keyCode == forward || e.keyCode == left || e.keyCode == right || e.keyCode == jump || e.keyCode == crouch || e.keyCode == sprint || e.keyCode == interact))
+                {
+                    backward = e.keyCode;
+                    holdingKey = KeyCode.None;
+                    backwardText.text = backward.ToString();
+                }
+            }
         }
         public void Forward()
         {
@@ -144,8 +154,15 @@ namespace Menus
                 forward = KeyCode.None;
                 forwardText.text = forward.ToString();
             }
-            
-
+        }
+        public void Backward()
+        {
+            if (!(forward == KeyCode.None || left == KeyCode.None || right == KeyCode.None || jump == KeyCode.None || crouch == KeyCode.None || sprint == KeyCode.None || interact == KeyCode.None))
+            {
+                holdingKey = backward;
+                backward = KeyCode.None;
+                backwardText.text = backward.ToString();
+            }
         }
     }
 }
