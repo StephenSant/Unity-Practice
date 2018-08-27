@@ -28,6 +28,11 @@ namespace Menus
         public Text backwardText, leftText, RightText, jumpText, crouchText, sprintText, interactText;
         #endregion
 
+        private void OnGUI()
+        {
+            
+        }
+
         private void Start()
         {
             forward = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Forward", "W"));
@@ -122,6 +127,15 @@ namespace Menus
             PlayerPrefs.SetString("Spint", sprint.ToString());
             PlayerPrefs.SetString("Interact", interact.ToString());
         }
+
+        /*public void keyBind(int whichKey)
+        {
+            if (whichKey == 1)
+            {
+                
+            }
+        }
+
         private void OnGUI()
         {
             Event e = Event.current;
@@ -163,6 +177,6 @@ namespace Menus
                 backward = KeyCode.None;
                 backwardText.text = backward.ToString();
             }
-        }
+        }*/
     }
 }
