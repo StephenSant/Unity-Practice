@@ -20,12 +20,13 @@ namespace Player
         #endregion
         #region Health
         [Header("Health")]
-        //max health 
-        public float maxHealth;
-        //current health
-        public float curHealth;
+        public float maxHealth;//max health
+        public float curHealth;//current health
         public GUIStyle healthColor;
         public GUIStyle healthColorBackground;
+        public bool isHealing;//When is it going start healing?
+        private float healTimer;
+        public float startHealTime = 10;
         #endregion
         #region Level and Exp
         [Header("Levels and Exp")]
@@ -71,15 +72,19 @@ namespace Player
                 //the maximum amount of experience is increased by 50
                 maxExp += 50;
             }
-            if (movement.isPaused)
-            {
-
-            }
+            healTimer -= Time.deltaTime;
+            if (healTimer <= 0)
+            { isHealing = true; }
+            else { isHealing = false; }
         }
         #endregion
         #region LateUpdate
         private void LateUpdate()
         {
+            if (isHealing)
+            {
+                curHealth++;
+            }
             //if our current health is greater than our maximum amount of health
             if (curHealth > maxHealth)
             {
@@ -135,6 +140,17 @@ namespace Player
         }
 
         #endregion
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "Enemy")
+            {
+                curHealth -= 10;
+                healTimer = startHealTime;
+            }
+
+        }
+
     }
     public enum IsLiving
     {

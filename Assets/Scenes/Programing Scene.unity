@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2698,6 +2698,21 @@ Prefab:
       propertyPath: expColorBackground.m_Normal.m_Background
       value: 
       objectReference: {fileID: 2800000, guid: 99d6b15933d643847ace90c958a0f8c4, type: 3}
+    - target: {fileID: 136605373907640840, guid: 7cbef56ea4b93c845908f06a919e265c,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136605373907640840, guid: 7cbef56ea4b93c845908f06a919e265c,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114129010803925182, guid: 7cbef56ea4b93c845908f06a919e265c,
+        type: 2}
+      propertyPath: startHealTime
+      value: 7.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cbef56ea4b93c845908f06a919e265c, type: 2}
   m_IsPrefabAsset: 0
@@ -3386,6 +3401,20 @@ Prefab:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1853932431501180, guid: 4793cca2166172c44a067df58759affa, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 136504845321864064, guid: 4793cca2166172c44a067df58759affa,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136504845321864064, guid: 4793cca2166172c44a067df58759affa,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.55
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4793cca2166172c44a067df58759affa, type: 2}
   m_IsPrefabAsset: 0
@@ -3599,6 +3628,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1612565510}
   m_Mesh: {fileID: 4300000, guid: fb926ee64d4ee60489d98680c5f617b8, type: 3}
+--- !u!1 &1632260326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1853932431501180, guid: 4793cca2166172c44a067df58759affa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1494696186}
+--- !u!136 &1632260332
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1632260326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1656717914
 GameObject:
   m_ObjectHideFlags: 0
