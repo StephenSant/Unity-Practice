@@ -7,11 +7,14 @@ namespace Player
     {
         #region Variables
         [Header("PLAYER VARIABLES")]
+        public CharacterHandler charH;
+        public CheckPoint checkPoint;
         [Header("Movement Variables")]
         public float speed = 6f;//how fast the player can move
         public float jumpSpeed = 8f;//how height the player can jump
-        public float runSpeed;
-        public float runTime;
+        public float runSpeed = 12;
+        public float walkSpeed = 6;
+        public bool running;
         public float gravity = 20f;//player's gravity
         private Vector3 moveDirection = Vector3.zero;//direction the player is moving
         private CharacterController controller;//player controller component
@@ -33,10 +36,12 @@ namespace Player
         void Start()
         {
             controller = GetComponent<CharacterController>();//finds the player controller component
+            charH = GetComponent<CharacterHandler>();
             myCamera = GameObject.Find("Main Camera");//finds the camera
             spawnPoint = transform.position;//sets spawnpoint
             Cursor.lockState = CursorLockMode.Locked;//locks the cursor position
             Cursor.visible = false;//makes the cursor invisible 
+            checkPoint = GetComponent<CheckPoint>();
         }
         #endregion
         #region Update
@@ -46,8 +51,14 @@ namespace Player
             #region Movement
             if (Input.GetKey(KeyCode.LeftShift))
             {
-
+                running = true;
             }
+
+            else { running = false; }
+
+            if (running) { speed = runSpeed; }
+            else { speed = walkSpeed; }
+
             if (controller.isGrounded)
             {
                 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));//sets the direction the player is going
@@ -80,7 +91,10 @@ namespace Player
             //respawn the player if he fall off the world
             if (transform.position.y < -10)
             {
-                transform.position = spawnPoint;
+                transform.position = checkPoint.curCheckpoint.transform.position;//our transform.position is equal to that of the checkpoint
+                charH.curHealth = charH.maxHealth;//our characters health is equal to full health
+                charH.alive = true;//character is alive
+                charH.controller.enabled = true;//characters controller is active 
             }
             #endregion
             #region Pausing
@@ -140,7 +154,6 @@ namespace Player
             }
         }
         #endregion
-
     }
     #region RotationalAxis
     public enum RotationalAxis//different possible axis to move the camera

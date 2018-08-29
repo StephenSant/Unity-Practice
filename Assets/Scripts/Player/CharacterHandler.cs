@@ -13,10 +13,11 @@ namespace Player
         #region Character
         [Header("Character")]
         //bool to tell if the player is alive
-        public IsLiving alive = IsLiving.Alive;
+        public bool alive = true;
         //connection to players character controller
         public CharacterController controller;
         public CharacterMovement movement;
+        public CheckPoint checkPoint;
         #endregion
         #region Health
         [Header("Health")]
@@ -41,6 +42,13 @@ namespace Player
         //render texture for the mini map that we need to connect to a camera
         public RenderTexture miniMap;
         #endregion
+        #region Stats
+        [Header("Stats")]
+        [Range (1,10)]
+        public int strength = 1;
+        [Range(1, 10)]
+        public int preception = 1, endurence = 1, charisma = 1, inteligence = 1, agility = 1, luck = 1;
+        #endregion
         #endregion
         #region Start
         private void Start()
@@ -50,12 +58,13 @@ namespace Player
             //set current health to max
             curHealth = maxHealth;
             //make sure player is alive
-            alive = IsLiving.Alive;
+            alive = true;
             //max exp starts at 60
             maxExp = 60;
             //connect the Character Controller to the controller variable
             controller = GetComponent<CharacterController>();
             movement = GetComponent<CharacterMovement>();
+            checkPoint = GetComponent<CheckPoint>();
         }
         #endregion
         #region Update
@@ -92,29 +101,28 @@ namespace Player
                 curHealth = maxHealth;
             }
             //if our current health is less than 0 or we are not alive
-            if (curHealth < 0 || alive == IsLiving.Dead)
+            if (curHealth < 0 || !alive)
             {
                 //current health equals 0
                 curHealth = 0;
             }
-            switch (alive)
+
+            if (curHealth == 0)
             {
-                case IsLiving.Alive:
-                    if (curHealth == 0)
-                    {
-                        alive = IsLiving.Dead;
-                    }
-                    break;
-                case IsLiving.Dead:
-                    Die();
-                    break;
+                Die();
             }
+
         }
         #endregion
+        #region Die
         private void Die()
         {
-            controller.enabled = false;
+            transform.position = checkPoint.curCheckpoint.transform.position;//our transform.position is equal to that of the checkpoint
+            curHealth = maxHealth;//our characters health is equal to full health
+            alive = true;//character is alive
+            controller.enabled = true;//characters controller is active 
         }
+        #endregion
         #region OnGUI
         private void OnGUI()
         {
@@ -151,11 +159,6 @@ namespace Player
 
         }
 
-    }
-    public enum IsLiving
-    {
-        Alive,
-        Dead
     }
 }
 
