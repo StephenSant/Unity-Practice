@@ -15,6 +15,9 @@ namespace Player
         public float runSpeed = 12;
         public float walkSpeed = 6;
         public bool running;
+        public float staminaCap = 500;
+        public float stamina;
+        public float staminaDelay;
         public float gravity = 20f;//player's gravity
         private Vector3 moveDirection = Vector3.zero;//direction the player is moving
         private CharacterController controller;//player controller component
@@ -49,15 +52,32 @@ namespace Player
         void Update()
         {
             #region Movement
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && staminaDelay>=staminaCap)
             {
                 running = true;
             }
 
             else { running = false; }
 
-            if (running) { speed = runSpeed; }
-            else { speed = walkSpeed; }
+            if (running)
+            {
+                speed = runSpeed;
+                stamina--;
+            }
+            else
+            {
+                speed = walkSpeed;
+                stamina++;
+                staminaDelay++;
+            }
+            if (stamina >= staminaCap)
+            {
+                stamina = staminaCap;
+            }
+            if(stamina <= 0)
+            {
+                staminaDelay = 0;
+            }
 
             if (controller.isGrounded)
             {
@@ -97,31 +117,8 @@ namespace Player
                 charH.controller.enabled = true;//characters controller is active 
             }
             #endregion
-            #region Pausing
-            //pauses the game
-            if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
-            {
-                isPaused = false;
-
-            }
-            else if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
-            {
-                isPaused = true;
-            }
-            if (isPaused)
-            {
-                Time.timeScale = 0;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-
-            }
-            else
-            {
-                Time.timeScale = 1;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            #endregion
+            
+            
         }
         #endregion
         #region Axis functons

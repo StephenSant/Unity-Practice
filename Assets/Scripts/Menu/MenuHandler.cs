@@ -25,13 +25,8 @@ namespace Menus
         public KeyCode forward, backward, left, right, jump, crouch, sprint, interact;
         [Header("KeyBind References")]
         public Text forwardText;
-        public Text backwardText, leftText, RightText, jumpText, crouchText, sprintText, interactText;
+        public Text backwardText, leftText, rightText, jumpText, crouchText, sprintText, interactText;
         #endregion
-
-        private void OnGUI()
-        {
-            
-        }
 
         private void Start()
         {
@@ -43,6 +38,15 @@ namespace Menus
             crouch = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Crouch", "LeftControl"));
             sprint = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Sprint", "LeftShift"));
             interact = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Interact", "E"));
+
+            forwardText.text = (PlayerPrefs.GetString("Forward")); 
+            backwardText.text = (PlayerPrefs.GetString("Backward"));
+            leftText.text = (PlayerPrefs.GetString("Left"));
+            rightText.text = (PlayerPrefs.GetString("Right"));
+            jumpText.text = (PlayerPrefs.GetString("Jump"));
+            crouchText.text = (PlayerPrefs.GetString("Crouch"));
+            sprintText.text = (PlayerPrefs.GetString("Sprint"));
+            interactText.text = (PlayerPrefs.GetString("Interact"));
         }
 
         public void LoadGame()//starts the game
@@ -124,16 +128,11 @@ namespace Menus
             PlayerPrefs.SetString("Right", right.ToString());
             PlayerPrefs.SetString("Jump", jump.ToString());
             PlayerPrefs.SetString("Crouch", crouch.ToString());
-            PlayerPrefs.SetString("Spint", sprint.ToString());
+            PlayerPrefs.SetString("Sprint", sprint.ToString());
             PlayerPrefs.SetString("Interact", interact.ToString());
-        }
 
-        /*public void keyBind(int whichKey)
-        {
-            if (whichKey == 1)
-            {
-                
-            }
+            
+            
         }
 
         private void OnGUI()
@@ -141,7 +140,6 @@ namespace Menus
             Event e = Event.current;
             if (forward == KeyCode.None)
             {
-                Debug.Log("KeyCode: " + e.keyCode);
                 if (!(e.keyCode == backward || e.keyCode == left || e.keyCode == right || e.keyCode == jump || e.keyCode == crouch || e.keyCode == sprint || e.keyCode == interact))
                 {
                     forward = e.keyCode;
@@ -151,12 +149,65 @@ namespace Menus
             }
             if (backward == KeyCode.None)
             {
-                Debug.Log("KeyCode: " + e.keyCode);
                 if (!(e.keyCode == forward || e.keyCode == left || e.keyCode == right || e.keyCode == jump || e.keyCode == crouch || e.keyCode == sprint || e.keyCode == interact))
                 {
                     backward = e.keyCode;
                     holdingKey = KeyCode.None;
                     backwardText.text = backward.ToString();
+                }
+            }
+            if (left == KeyCode.None)
+            {
+                if(!(e.keyCode == forward || e.keyCode == backward || e.keyCode == right || e.keyCode == jump || e.keyCode == crouch || e.keyCode == sprint || e.keyCode == interact))
+                {
+                    left = e.keyCode;
+                    holdingKey = KeyCode.None;
+                    leftText.text = left.ToString();
+                }
+            }
+            if (right == KeyCode.None)
+            {
+                if (!(e.keyCode == forward || e.keyCode == left || e.keyCode == backward || e.keyCode == jump || e.keyCode == crouch || e.keyCode == sprint || e.keyCode == interact))
+                {
+                    right = e.keyCode;
+                    holdingKey = KeyCode.None;
+                    rightText.text = right.ToString();
+                }
+            }
+            if (jump == KeyCode.None)
+            {
+                if (!(e.keyCode == forward || e.keyCode == left || e.keyCode == backward || e.keyCode == right || e.keyCode == crouch || e.keyCode == sprint || e.keyCode == interact))
+                {
+                    jump = e.keyCode;
+                    holdingKey = KeyCode.None;
+                    jumpText.text = jump.ToString();
+                }
+            }
+            if (crouch == KeyCode.None)
+            {
+                if (!(e.keyCode == forward || e.keyCode == left || e.keyCode == backward || e.keyCode == jump || e.keyCode == right || e.keyCode == sprint || e.keyCode == interact))
+                {
+                    crouch = e.keyCode;
+                    holdingKey = KeyCode.None;
+                    crouchText.text = crouch.ToString();
+                }
+            }
+            if (sprint == KeyCode.None)
+            {
+                if (!(e.keyCode == forward || e.keyCode == left || e.keyCode == backward || e.keyCode == jump || e.keyCode == crouch || e.keyCode == right || e.keyCode == interact))
+                {
+                    sprint = e.keyCode;
+                    holdingKey = KeyCode.None;
+                    sprintText.text = sprint.ToString();
+                }
+            }
+            if (interact == KeyCode.None)
+            {
+                if (!(e.keyCode == forward || e.keyCode == left || e.keyCode == backward || e.keyCode == jump || e.keyCode == crouch || e.keyCode == right || e.keyCode == sprint))
+                {
+                    interact = e.keyCode;
+                    holdingKey = KeyCode.None;
+                    interactText.text = interact.ToString();
                 }
             }
         }
@@ -177,6 +228,61 @@ namespace Menus
                 backward = KeyCode.None;
                 backwardText.text = backward.ToString();
             }
-        }*/
+        }
+        public void Left()
+        {
+            if (!(forward == KeyCode.None || backward == KeyCode.None || right == KeyCode.None || jump == KeyCode.None || crouch == KeyCode.None || sprint == KeyCode.None || interact == KeyCode.None))
+            {
+                holdingKey = left;
+                left = KeyCode.None;
+                leftText.text = left.ToString();
+            }
+        }
+        public void Right()
+        {
+            if (!(forward == KeyCode.None || backward == KeyCode.None || left == KeyCode.None || jump == KeyCode.None || crouch == KeyCode.None || sprint == KeyCode.None || interact == KeyCode.None))
+            {
+                holdingKey = right;
+                right = KeyCode.None;
+                rightText.text = right.ToString();
+            }
+        }
+        public void Jump()
+        {
+            if (!(forward == KeyCode.None || backward == KeyCode.None || left == KeyCode.None || right == KeyCode.None || crouch == KeyCode.None || sprint == KeyCode.None || interact == KeyCode.None))
+            {
+                holdingKey = jump;
+                jump = KeyCode.None;
+                jumpText.text = jump.ToString();
+            }
+        }
+        public void Crouch()
+        {
+            if (!(forward == KeyCode.None || backward == KeyCode.None || left == KeyCode.None || right == KeyCode.None || jump == KeyCode.None || sprint == KeyCode.None || interact == KeyCode.None))
+            {
+                holdingKey = crouch;
+                crouch = KeyCode.None;
+                crouchText.text = crouch.ToString();
+            }
+        }
+        public void Sprint()
+        {
+            if (!(forward == KeyCode.None || backward == KeyCode.None || left == KeyCode.None || right == KeyCode.None || jump == KeyCode.None || crouch == KeyCode.None || interact == KeyCode.None))
+            {
+                holdingKey = sprint;
+                sprint = KeyCode.None;
+                sprintText.text = sprint.ToString();
+            }
+        }
+        public void Interact()
+        {
+            if (!(forward == KeyCode.None || backward == KeyCode.None || left == KeyCode.None || right == KeyCode.None || jump == KeyCode.None || crouch == KeyCode.None || sprint == KeyCode.None))
+            {
+                holdingKey = interact;
+                interact = KeyCode.None;
+                interactText.text = interact.ToString();
+            }
+        }
+
     }
 }

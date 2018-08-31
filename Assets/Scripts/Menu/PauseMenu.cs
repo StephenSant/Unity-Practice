@@ -10,8 +10,12 @@ namespace Menus
 
         #region Variables
         public GameObject pauseMenu;
-        public bool isPause;
+        public bool Paused;
         public GameObject player;
+        public GameObject optionsPanel;
+        public GameObject pausePanel;
+        public Slider sensitivityY;
+        public Slider sensitivityX;
         #endregion
 
         // Use this for initialization
@@ -19,7 +23,7 @@ namespace Menus
         {
             player = GameObject.Find("Player");
             pauseMenu = GameObject.Find("Pause Menu");
-            isPause = false;
+            Paused = false;
         }
 
         public void MainMenuButton()
@@ -27,31 +31,59 @@ namespace Menus
             SceneManager.LoadScene("GUI Scene");
         }
 
+        public void OptionMenuButton()
+        {
+            pausePanel.active = false;
+            optionsPanel.active = true;
+            sensitivityX.value = player.GetComponent<Player.CharacterMovement>().sensitivityX;
+            sensitivityY.value = player.GetComponent<Player.CharacterMovement>().sensitivityY;
+        }
+
+        public void SenSliders()
+        {
+            player.GetComponent<Player.CharacterMovement>().sensitivityX = sensitivityX.value;
+            player.GetComponent<Player.CharacterMovement>().sensitivityY = sensitivityY.value;
+        }
+
+        public void OptionsBack()
+        {
+            optionsPanel.active = false;
+            pausePanel.active = true;
+        }
+
         public void UnpauseButton()
         {
-            isPause = false;
-            player.GetComponent<Player.CharacterMovement>().isPaused = false;
+            Paused = false;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && isPause)
+            if (Input.GetKeyDown(KeyCode.Escape) && Paused)
             {
-                isPause = false;
+                if (optionsPanel.active) { OptionsBack(); }
+                else {Paused = false; }
+                
             }
-            else if (Input.GetKeyDown(KeyCode.Escape) && !isPause)
+            else if (Input.GetKeyDown(KeyCode.Escape) && !Paused)
             {
+                Paused = true;
+                pausePanel.active = true;
+            }
 
-                isPause = true;
-            }
-            if (isPause)
+            if (Paused)
             {
-                pauseMenu.active = true;
+                Time.timeScale = 0;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
             else
             {
-                pauseMenu.active = false;
+                Time.timeScale = 1;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                pausePanel.active = false;
+                optionsPanel.active = false;
             }
         }
     }

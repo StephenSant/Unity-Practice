@@ -15,6 +15,7 @@ namespace Player
         //bool to tell if the player is alive
         public bool alive = true;
         //connection to players character controller
+        public Menus.PauseMenu pauseMenu;
         public CharacterController controller;
         public CharacterMovement movement;
         public CheckPoint checkPoint;
@@ -129,7 +130,7 @@ namespace Player
             //set up our aspect ratio for the GUI elements
             float scrW = Screen.width / 16;
             float scrH = Screen.height / 9;
-            if (!movement.isPaused)
+            if (!pauseMenu.Paused)
             {
                 //GUI Box on screen for the healthbar background
                 GUI.Box(new Rect(scrW * 6, scrH * 0.25f, scrW * 4, scrH * 0.5f), "", healthColorBackground);
@@ -141,7 +142,8 @@ namespace Player
                 GUI.Box(new Rect(scrW * 6, scrH * 0.75f, scrW * 4, scrH * 0.25f), "", expColorBackground);
                 //GUI Box for current experience that moves in same place as the background bar
                 //current experience divided by the posistion on screen and timesed by the total max experience
-                GUI.Box(new Rect(scrW * 6, scrH * 0.75f, curExp * (scrW * 4) / maxExp, scrH * 0.25f), "", expColor);
+                GUI.Box(new Rect(scrW * 6, scrH * 0.75f, movement.stamina * (scrW * 4) / movement.staminaCap, scrH * 0.25f), "", expColor);
+
                 //GUI Draw Texture on the screen that has the mini map render texture attached 
                 GUI.DrawTexture(new Rect(13.75f * scrW, 0.25f * scrH, 2 * scrW, 2 * scrH), miniMap);
             }
