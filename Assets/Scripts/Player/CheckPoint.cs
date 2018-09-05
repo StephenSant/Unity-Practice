@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace Player
-{
     //this script can be found in the Component section under the option Character Set Up 
     //CheckPoint
-    [AddComponentMenu("FirstPerson/CheckPoint")]
+    [AddComponentMenu("FirstPerson/Player/CheckPoint")]
     public class CheckPoint : MonoBehaviour
     {
         #region Variables
@@ -45,7 +43,6 @@ namespace Player
         }
         #endregion
     }
-}
 
 
 

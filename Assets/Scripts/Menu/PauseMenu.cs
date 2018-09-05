@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-namespace Menus
-{
+
     public class PauseMenu : MonoBehaviour
     {
 
@@ -35,14 +34,14 @@ namespace Menus
         {
             pausePanel.active = false;
             optionsPanel.active = true;
-            sensitivityX.value = player.GetComponent<Player.CharacterMovement>().sensitivityX;
-            sensitivityY.value = player.GetComponent<Player.CharacterMovement>().sensitivityY;
+            sensitivityX.value = player.GetComponent<CharacterMovement>().sensitivityX;
+            sensitivityY.value = player.GetComponent<CharacterMovement>().sensitivityY;
         }
 
         public void SenSliders()
         {
-            player.GetComponent<Player.CharacterMovement>().sensitivityX = sensitivityX.value;
-            player.GetComponent<Player.CharacterMovement>().sensitivityY = sensitivityY.value;
+            player.GetComponent<CharacterMovement>().sensitivityX = sensitivityX.value;
+            player.GetComponent<CharacterMovement>().sensitivityY = sensitivityY.value;
         }
 
         public void OptionsBack()
@@ -80,11 +79,9 @@ namespace Menus
             else
             {
                 Time.timeScale = 1;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
                 pausePanel.active = false;
                 optionsPanel.active = false;
             }
         }
     }
-}
+

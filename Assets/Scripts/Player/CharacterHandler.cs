@@ -2,11 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-namespace Player
-{
-    //this script can be found in the Component section under the option Character Set Up 
-    //Character Handler
-    [AddComponentMenu("FirstPerson/PlayerHandler")]
+//this script can be found in the Component section under the option Character Set Up 
+//Character Handler
+[AddComponentMenu("NotSkyrim/Player/PlayerHandler")]
     public class CharacterHandler : MonoBehaviour
     {
         #region Variables
@@ -15,7 +13,7 @@ namespace Player
         //bool to tell if the player is alive
         public bool alive = true;
         //connection to players character controller
-        public Menus.PauseMenu pauseMenu;
+        public PauseMenu pauseMenu;
         public CharacterController controller;
         public CharacterMovement movement;
         public CheckPoint checkPoint;
@@ -48,7 +46,7 @@ namespace Player
         [Range (1,10)]
         public int strength = 1;
         [Range(1, 10)]
-        public int preception = 1, endurence = 1, charisma = 1, inteligence = 1, agility = 1, luck = 1;
+        public int dexterity = 1, constitution = 1,  inteligence = 1, wisdom = 1, charisma = 1;
         #endregion
         #endregion
         #region Start
@@ -162,7 +160,7 @@ namespace Player
         }
 
     }
-}
+
 
 
 

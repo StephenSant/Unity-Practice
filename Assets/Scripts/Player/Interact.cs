@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-
+[AddComponentMenu("NotSkyrim/NPC/Interact")]
 public class Interact : MonoBehaviour
 {
     [Header("References")]
@@ -27,7 +27,15 @@ public class Interact : MonoBehaviour
                 #region NPC Dialogue
                 if (hitInfo.collider.CompareTag("NPC"))
                 {
+                    Dialogue dlg = hitInfo.transform.GetComponent<Dialogue>();
+                    if (dlg != null)
+                    { 
+                    dlg.showDlg = true;
+                    player.GetComponent<CharacterMovement>().enabled = false;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                     Debug.Log("Talking to NPC.");
+                    }
                 }
                 #endregion
                 #region Chest

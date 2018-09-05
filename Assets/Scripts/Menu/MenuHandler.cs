@@ -3,8 +3,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;//interacts withe scene changing
 using UnityEngine.UI;//interacting with GUI elements
 using UnityEngine.EventSystems;// BUTTONS!
-namespace Menus
-{
     public class MenuHandler : MonoBehaviour
     {
         #region Variables
@@ -285,4 +283,3 @@ namespace Menus
         }
 
     }
-}
