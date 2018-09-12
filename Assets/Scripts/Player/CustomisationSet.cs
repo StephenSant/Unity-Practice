@@ -358,7 +358,7 @@ public class CustomisationSet : MonoBehaviour
         //move down the screen with the int using ++ each grouping of GUI elements are moved using this
         #endregion
         #region Character Name and Save & Play
-
+        GUI.Box(new Rect(11f * scrW, 0.7f * scrH, 1.75f * scrW, .5f * scrH), charName);
         //name of our character equals a GUI TextField that holds our character name and limit of characters
         //move down the screen with the int using ++ each grouping of GUI elements are moved using this
 
