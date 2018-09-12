@@ -44,8 +44,6 @@ public class CharacterMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;//locks the cursor position
         Cursor.visible = false;//makes the cursor invisible 
         checkPoint = GetComponent<CheckPoint>();
-        staminaCap = 100 * charH.constitution;
-        runSpeed = 7 + charH.dexterity;
         stamina = staminaCap;
         staminaDelay = stamina;
     }

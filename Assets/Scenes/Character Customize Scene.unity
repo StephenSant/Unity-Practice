@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657612, g: 0.49641013, b: 0.5748169, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -228,8 +228,8 @@ SkinnedMeshRenderer:
   - {fileID: 2100000, guid: 7ae536c231a8d37499d7b869db359b9c, type: 2}
   - {fileID: 2100000, guid: 7b7a7cf6e1819014f857132c8041b2f6, type: 2}
   - {fileID: 2100000, guid: 1bcd83ad70d598643b99a9e344ae9db4, type: 2}
-  - {fileID: 2100000, guid: 6fc2b70d80f441f479cbed464dc8b480, type: 2}
   - {fileID: 2100000, guid: 214981b12d1c61f4ead5e9bdf2e37b6e, type: 2}
+  - {fileID: 2100000, guid: 6fc2b70d80f441f479cbed464dc8b480, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -611,13 +611,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 696899717}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.42260793, y: 0.0063271355, z: -0.0029503915, w: 0.9062857}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 0.8, z: 0}
 --- !u!1 &809551819
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,6 +678,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 123907113}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &960427154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 960427156}
+  - component: {fileID: 960427155}
+  m_Layer: 0
+  m_Name: Custom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &960427155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 960427154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60187939b13e7e49ac76016836c1df0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skin: []
+  hair: []
+  mouth: []
+  eyes: []
+  clothes: []
+  armour: []
+  skinIndex: 0
+  hairIndex: 0
+  mouthIndex: 0
+  eyesIndex: 0
+  clothesIndex: 0
+  armourIndex: 0
+  character: {fileID: 0}
+  skinMax: 4
+  hairMax: 5
+  mouthMax: 3
+  eyesMax: 4
+  clothesMax: 11
+  armourMax: 11
+  charName: Adventurer
+  strength: 1
+  dexterity: 1
+  constitution: 1
+  inteligence: 1
+  wisdom: 1
+  charisma: 1
+  points: 10
+  charClass: 0
+--- !u!4 &960427156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 960427154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &991437424
 GameObject:
@@ -958,7 +1026,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b60b166381cf36440b85ee9c2aac24dd, type: 2}
+  - {fileID: 2100000, guid: 53807144f4748b144a245f113b64af03, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
