@@ -44,7 +44,7 @@ public class CustomisationSet : MonoBehaviour
     [Range(1, 10)]
     public int dexterity = 1, constitution = 1, inteligence = 1, wisdom = 1, charisma = 1;
     //points to increase our stats
-    public int points = 10;
+    public int points = 5;
     public CharacterClass charClass = CharacterClass.Barbarian;
     #endregion
     #endregion
@@ -391,70 +391,51 @@ public class CustomisationSet : MonoBehaviour
         }
         #endregion
         i = 0;
-        GUI.Box(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 1f * scrW, 0.5f * scrH), "Skills:");
+        GUI.Box(new Rect(4.1f * scrW, scrH + i * (0.5f * scrH), 1f * scrW, 0.5f * scrH), "Skills:");
         i++;
-        GUI.Box(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<");
+        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        {
+
+        }
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Strength = " + strength);
-        GUI.Box(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">");
+        if(GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        {
+
+        }
         i++;
-        GUI.Box(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<");
+        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        {
+
+        }
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Dexterity = " + dexterity);
-        GUI.Box(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">");
+        if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        {
+
+        }
         i++;
-        GUI.Box(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<");
+        GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<");
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Constitution = " + constitution);
-        GUI.Box(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">");
+        GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">");
         i++;
-        GUI.Box(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<");
+        GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<");
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Inteligence = " + inteligence);
-        GUI.Box(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">");
+        GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">");
         i++;
-        GUI.Box(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<");
+        GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<");
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Wisdom = " + wisdom);
-        GUI.Box(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">");
+        GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">");
         i++;
-        GUI.Box(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<");
+        GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<");
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Chariama = " + charisma);
-        GUI.Box(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">");
+        GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">");
+        i++;
+        GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Points: " + points);
         i = 0;
         GUI.Box(new Rect(7f * scrW, 1f * scrH, 2 * scrW, 0.5f * scrH), "Class");
         i++;
         if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Barbarian"))
         {
             charClass = CharacterClass.Barbarian;
-        }
-        i++;
-        if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Bard"))
-        {
-            charClass = CharacterClass.Bard;
-        }
-        i++;
-        if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Druid"))
-        {
-            charClass = CharacterClass.Druid;
-        }
-        i++;
-        if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Monk"))
-        {
-            charClass = CharacterClass.Monk;
-        }
-        i++;
-        if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Ranger"))
-        {
-            charClass = CharacterClass.Ranger;
-        }
-        i++;
-        if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Sorcerer"))
-        {
-            charClass = CharacterClass.Sorcerer;
-        }
-        i++;
-        if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Warlock"))
-        {
-            charClass = CharacterClass.Warlock;
-        }
-        if (charClass == CharacterClass.Barbarian)
-        {
             strength = 5;
             dexterity = 1;
             constitution = 1;
@@ -462,8 +443,10 @@ public class CustomisationSet : MonoBehaviour
             wisdom = 1;
             charisma = 1;
         }
-        if (charClass == CharacterClass.Bard)
+        i++;
+        if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Bard"))
         {
+            charClass = CharacterClass.Bard;
             strength = 1;
             dexterity = 1;
             constitution = 1;
@@ -471,8 +454,10 @@ public class CustomisationSet : MonoBehaviour
             wisdom = 1;
             charisma = 5;
         }
-        if (charClass == CharacterClass.Druid)
+        i++;
+        if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Druid"))
         {
+            charClass = CharacterClass.Druid;
             strength = 1;
             dexterity = 3;
             constitution = 1;
@@ -480,8 +465,10 @@ public class CustomisationSet : MonoBehaviour
             wisdom = 1;
             charisma = 1;
         }
-        if (charClass == CharacterClass.Monk)
+        i++;
+        if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Monk"))
         {
+            charClass = CharacterClass.Monk;
             strength = 1;
             dexterity = 1;
             constitution = 1;
@@ -489,8 +476,10 @@ public class CustomisationSet : MonoBehaviour
             wisdom = 1;
             charisma = 1;
         }
-        if (charClass == CharacterClass.Paladin)
+        i++;
+            if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Paladin"))
         {
+            charClass = CharacterClass.Paladin;
             strength = 3;
             dexterity = 2;
             constitution = 1;
@@ -498,8 +487,10 @@ public class CustomisationSet : MonoBehaviour
             wisdom = 1;
             charisma = 1;
         }
-        if (charClass == CharacterClass.Ranger)
+        i++;
+        if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Ranger"))
         {
+            charClass = CharacterClass.Ranger;
             strength = 1;
             dexterity = 5;
             constitution = 1;
@@ -507,8 +498,10 @@ public class CustomisationSet : MonoBehaviour
             wisdom = 1;
             charisma = 1;
         }
-        if(charClass == CharacterClass.Sorcerer)
+        i++;
+        if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Sorcerer"))
         {
+            charClass = CharacterClass.Sorcerer;
             strength = 1;
             dexterity = 1;
             constitution = 1;
@@ -516,8 +509,10 @@ public class CustomisationSet : MonoBehaviour
             wisdom = 3;
             charisma = 1;
         }
-        if (charClass == CharacterClass.Warlock)
+        i++;
+        if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Warlock"))
         {
+            charClass = CharacterClass.Warlock;
             strength = 1;
             dexterity = 1;
             constitution = 1;
