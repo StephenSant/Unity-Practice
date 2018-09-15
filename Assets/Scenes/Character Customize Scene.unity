@@ -727,9 +727,9 @@ MonoBehaviour:
   clothesMax: 11
   armourMax: 11
   charName: Adventurer
-  strength: 5
+  strength: 3
   dexterity: 1
-  constitution: 1
+  constitution: 2
   inteligence: 1
   wisdom: 1
   charisma: 1
