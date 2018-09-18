@@ -727,14 +727,14 @@ MonoBehaviour:
   clothesMax: 11
   armourMax: 11
   charName: Adventurer
-  strength: 3
-  dexterity: 1
-  constitution: 2
+  strength: 2
+  dexterity: 2
+  constitution: 3
   inteligence: 1
   wisdom: 1
   charisma: 1
   points: 5
-  charClass: 0
+  charClass: 4
 --- !u!4 &960427156
 Transform:
   m_ObjectHideFlags: 0

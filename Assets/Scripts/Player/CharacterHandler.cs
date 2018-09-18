@@ -147,6 +147,8 @@ public class CharacterHandler : MonoBehaviour
 
             //GUI Draw Texture on the screen that has the mini map render texture attached 
             GUI.DrawTexture(new Rect(13.75f * scrW, 0.25f * scrH, 2 * scrW, 2 * scrH), miniMap);
+
+            GUI.Box(new Rect(scrW *8, scrH *4.5f, scrW * 0.1f, scrH * 0.1f),"");
         }
     }
 

@@ -111,7 +111,7 @@ public class CustomisationSet : MonoBehaviour
         SetTexture("Skin", skinIndex = -1);
         SetTexture("Hair", hairIndex = 0);
         SetTexture("Eyes", eyesIndex = 0);
-        SetTexture("Clothes", clothesIndex = 0);
+        SetTexture("Clothes", clothesIndex = 4);
         SetTexture("Armour", armourIndex = 0);
         SetTexture("Mouth", mouthIndex = 0);
     }
@@ -265,8 +265,11 @@ public class CustomisationSet : MonoBehaviour
         //create the floats scrW and scrH that govern our 16:9 ratio
         float scrW = Screen.width / 16,
             scrH = Screen.height / 9;
-        //create an int that will help with shuffling your GUI elements under eachother
         int i = 0;
+        GUI.Box(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 2f * scrW, 0.5f * scrH),"Customisation");
+
+        //create an int that will help with shuffling your GUI elements under eachother
+        i++;
         #region Skin
         //GUI button on the left of the screen with the contence <
         if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
@@ -371,7 +374,7 @@ public class CustomisationSet : MonoBehaviour
             SetTexture("Skin", skinIndex = -1);
             SetTexture("Hair", hairIndex = 0);
             SetTexture("Eyes", eyesIndex = 0);
-            SetTexture("Clothes", clothesIndex = 0);
+            SetTexture("Clothes", clothesIndex = 4);
             SetTexture("Armour", armourIndex = 0);
             SetTexture("Mouth", mouthIndex = 0);
         }
@@ -475,7 +478,7 @@ public class CustomisationSet : MonoBehaviour
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Inteligence = " + inteligence);
         if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
-            if (inteligence != 10 && points != 1)
+            if (inteligence != 10 && points != 0)
             {
                 inteligence++;
                 points--;
@@ -535,7 +538,7 @@ public class CustomisationSet : MonoBehaviour
             charClass = CharacterClass.Barbarian;
             strength = 3;
             dexterity = 1;
-            constitution = 2;
+            constitution = 3;
             inteligence = 1;
             wisdom = 1;
             charisma = 1;
@@ -550,7 +553,7 @@ public class CustomisationSet : MonoBehaviour
             constitution = 1;
             inteligence = 1;
             wisdom = 1;
-            charisma = 4;
+            charisma = 5;
             points = 5;
         }
         i++;
@@ -560,7 +563,7 @@ public class CustomisationSet : MonoBehaviour
             strength = 1;
             dexterity = 2;
             constitution = 1;
-            inteligence = 3;
+            inteligence = 4;
             wisdom = 1;
             charisma = 1;
             points = 5;
@@ -572,8 +575,8 @@ public class CustomisationSet : MonoBehaviour
             strength = 1;
             dexterity = 1;
             constitution = 1;
-            inteligence = 2;
-            wisdom = 3;
+            inteligence = 1;
+            wisdom = 5;
             charisma = 1;
             points = 5;
         }
@@ -581,9 +584,9 @@ public class CustomisationSet : MonoBehaviour
         if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Paladin"))
         {
             charClass = CharacterClass.Paladin;
-            strength = 3;
+            strength = 2;
             dexterity = 2;
-            constitution = 1;
+            constitution = 3;
             inteligence = 1;
             wisdom = 1;
             charisma = 1;
@@ -594,7 +597,7 @@ public class CustomisationSet : MonoBehaviour
         {
             charClass = CharacterClass.Ranger;
             strength = 1;
-            dexterity = 4;
+            dexterity = 5;
             constitution = 1;
             inteligence = 1;
             wisdom = 1;
@@ -606,10 +609,10 @@ public class CustomisationSet : MonoBehaviour
         {
             charClass = CharacterClass.Sorcerer;
             strength = 1;
-            dexterity = 1;
+            dexterity = 2;
             constitution = 1;
-            inteligence = 3;
-            wisdom = 2;
+            inteligence = 2;
+            wisdom = 3;
             charisma = 1;
             points = 5;
         }
@@ -617,10 +620,10 @@ public class CustomisationSet : MonoBehaviour
         if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Warlock"))
         {
             charClass = CharacterClass.Warlock;
-            strength = 1;
+            strength = 2;
             dexterity = 1;
-            constitution = 2;
-            inteligence = 1;
+            constitution = 1;
+            inteligence = 2;
             wisdom = 3;
             charisma = 1;
             points = 5;
@@ -630,10 +633,11 @@ public class CustomisationSet : MonoBehaviour
         {
             baseStrength = 3;
             baseDexterity = 1;
-            baseConstitution = 2;
+            baseConstitution = 3;
             baseInteligence = 1;
             baseWisdom = 1;
             baseCharisma = 1;
+            GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nBarbarians know nothing but to smash and bash.\n\nStrength + 2 | Constitution + 2");
         }
         if (charClass == CharacterClass.Bard)
         {
@@ -642,7 +646,8 @@ public class CustomisationSet : MonoBehaviour
             baseConstitution = 1;
             baseInteligence = 1;
             baseWisdom = 1;
-            baseCharisma = 4;
+            baseCharisma = 5;
+            GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nBards have a way with words.\nWith the right words you can change anyones mind.\n\nCharisma + 4");
         }
         if (charClass == CharacterClass.Druid)
         {
@@ -650,53 +655,59 @@ public class CustomisationSet : MonoBehaviour
             baseDexterity = 2;
             baseConstitution = 1;
             baseInteligence = 3;
-            baseWisdom = 1;
+            baseWisdom = 2;
             baseCharisma = 1;
+            GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nDruids learn a bit from living in the woods.\n\nDexterity + 1 | Inteligence + 3");
         }
         if (charClass == CharacterClass.Monk)
         {
             baseStrength = 1;
             baseDexterity = 1;
             baseConstitution = 1;
-            baseInteligence = 2;
-            baseWisdom = 3;
+            baseInteligence = 1;
+            baseWisdom = 5;
             baseCharisma = 1;
+            GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nMonks are full of wisdom.\nSome might say the mind is the most powerful weapon.\n\nWisdom + 4");
         }
         if (charClass == CharacterClass.Paladin)
         {
-            baseStrength = 3;
+            baseStrength = 2;
             baseDexterity = 2;
-            baseConstitution = 1;
+            baseConstitution = 3;
             baseInteligence = 1;
             baseWisdom = 1;
             baseCharisma = 1;
+            GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nPaladins are the ideal hero.\nTough, agile and strong.\n\nStrength + 1 | Dexterity + 1 | Constitution + 2");
         }
         if (charClass == CharacterClass.Ranger)
         {
             baseStrength = 1;
-            baseDexterity = 4;
+            baseDexterity = 5;
             baseConstitution = 1;
             baseInteligence = 1;
             baseWisdom = 1;
             baseCharisma = 1;
+            GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nRangers are swift.\nCan't hit what you can't see.\n\nDexterity + 4");
         }
         if (charClass == CharacterClass.Sorcerer)
         {
             baseStrength = 1;
-            baseDexterity = 1;
+            baseDexterity = 2;
             baseConstitution = 1;
-            baseInteligence = 3;
-            baseWisdom = 2;
+            baseInteligence = 2;
+            baseWisdom = 3;
             baseCharisma = 1;
+            GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nSorcerers use magic to attack and use agility to not get hit.\n\nDexterity + 1 | Inteligence + 1 | Wisdom + 2");
         }
         if (charClass == CharacterClass.Warlock)
         {
             baseStrength = 1;
             baseDexterity = 1;
             baseConstitution = 2;
-            baseInteligence = 1;
+            baseInteligence = 2;
             baseWisdom = 3;
             baseCharisma = 1;
+            GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nWarlocks use magic and can take a hit.\n\nConstitution + 1 | Inteligence + 1 | Wisdom + 2");
         }
 
     }
