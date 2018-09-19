@@ -733,7 +733,8 @@ MonoBehaviour:
   inteligence: 1
   wisdom: 1
   charisma: 1
-  points: 5
+  points: 10
+  startPoints: 10
   charClass: 4
 --- !u!4 &960427156
 Transform:
@@ -1027,7 +1028,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 53807144f4748b144a245f113b64af03, type: 2}
+  - {fileID: 2100000, guid: 35b674430166660478901f6e90180bb0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

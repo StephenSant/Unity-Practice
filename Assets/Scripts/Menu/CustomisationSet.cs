@@ -6,6 +6,7 @@ public class CustomisationSet : MonoBehaviour
 {
 
     #region Variables
+    #region Customisation
     [Header("Texture List")]
     //Texture2D List for skin, hair, mouth, eyes
     public List<Texture2D> skin = new List<Texture2D>();
@@ -36,6 +37,7 @@ public class CustomisationSet : MonoBehaviour
     [Header("Character Name")]
     //name of our character that the user is making
     public string charName = "Adventurer";
+    #endregion
     #region Stats
     [Header("Stats")]
     //base stats
@@ -45,7 +47,8 @@ public class CustomisationSet : MonoBehaviour
     public int dexterity = 1, constitution = 1, inteligence = 1, wisdom = 1, charisma = 1;
     int baseStrength, baseDexterity, baseConstitution, baseInteligence, baseWisdom, baseCharisma;
     //points to increase our stats
-    public int points = 5;
+    public int points;
+    public int startPoints = 10;
     public CharacterClass charClass = CharacterClass.Barbarian;
     #endregion
     #endregion
@@ -114,6 +117,7 @@ public class CustomisationSet : MonoBehaviour
         SetTexture("Clothes", clothesIndex = 4);
         SetTexture("Armour", armourIndex = 0);
         SetTexture("Mouth", mouthIndex = 0);
+        points = startPoints;
     }
     #endregion
 
@@ -256,6 +260,17 @@ public class CustomisationSet : MonoBehaviour
 
         //SetString CharacterName
         PlayerPrefs.SetString("CharacterName", charName);
+
+        //SetInt for Stats
+        PlayerPrefs.SetInt("Strength", strength);
+        PlayerPrefs.SetInt("Dexterity", dexterity);
+        PlayerPrefs.SetInt("Constitution", constitution);
+        PlayerPrefs.SetInt("Inteligence", inteligence);
+        PlayerPrefs.SetInt("Wisdom", wisdom);
+        PlayerPrefs.SetInt("Charisma", charisma);
+
+        //
+        PlayerPrefs.SetString("Class", "" + charClass);
     }
     #endregion
 
@@ -265,24 +280,25 @@ public class CustomisationSet : MonoBehaviour
         //create the floats scrW and scrH that govern our 16:9 ratio
         float scrW = Screen.width / 16,
             scrH = Screen.height / 9;
+        #region Customisation
         int i = 0;
-        GUI.Box(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 2f * scrW, 0.5f * scrH),"Customisation");
+        GUI.Box(new Rect(0.5f * scrW, scrH + i * (0.5f * scrH), 2f * scrW, 0.5f * scrH), "Customisation");
 
         //create an int that will help with shuffling your GUI elements under eachother
         i++;
         #region Skin
         //GUI button on the left of the screen with the contence <
-        if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        if (GUI.Button(new Rect(0.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
         {
             //when pressed the button will run SetTexture and grab the Skin Material and move the texture index in the direction  -1 
             SetTexture("Skin", -1);
         }
 
         //GUI Box or Lable on the left of the screen with the contence Skin
-        GUI.Box(new Rect(0.75f * scrW, scrH + i * (0.5f * scrH), 1 * scrW, 0.5f * scrH), "Skin");
+        GUI.Box(new Rect(1f * scrW, scrH + i * (0.5f * scrH), 1 * scrW, 0.5f * scrH), "Skin");
 
         //GUI button on the left of the screen with the contence >
-        if (GUI.Button(new Rect(1.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(2f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
             //when pressed the button will run SetTexture and grab the Skin Material and move the texture index in the direction  1
             SetTexture("Skin", 1);
@@ -292,65 +308,65 @@ public class CustomisationSet : MonoBehaviour
         #endregion
         //set up same things for Hair, Mouth and Eyes
         #region Hair
-        if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        if (GUI.Button(new Rect(0.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
         {
 
             SetTexture("Hair", -1);
         }
-        GUI.Box(new Rect(0.75f * scrW, scrH + i * (0.5f * scrH), 1 * scrW, 0.5f * scrH), "Hair");
-        if (GUI.Button(new Rect(1.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        GUI.Box(new Rect(1f * scrW, scrH + i * (0.5f * scrH), 1 * scrW, 0.5f * scrH), "Hair");
+        if (GUI.Button(new Rect(2f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
             SetTexture("Hair", 1);
         }
         i++;
         #endregion
         #region Mouth
-        if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        if (GUI.Button(new Rect(0.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
         {
 
             SetTexture("Mouth", -1);
         }
-        GUI.Box(new Rect(0.75f * scrW, scrH + i * (0.5f * scrH), 1 * scrW, 0.5f * scrH), "Mouth");
-        if (GUI.Button(new Rect(1.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        GUI.Box(new Rect(1f * scrW, scrH + i * (0.5f * scrH), 1 * scrW, 0.5f * scrH), "Mouth");
+        if (GUI.Button(new Rect(2f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
             SetTexture("Mouth", 1);
         }
         i++;
         #endregion
         #region Eyes
-        if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        if (GUI.Button(new Rect(0.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
         {
 
             SetTexture("Eyes", -1);
         }
-        GUI.Box(new Rect(0.75f * scrW, scrH + i * (0.5f * scrH), 1 * scrW, 0.5f * scrH), "Eyes");
-        if (GUI.Button(new Rect(1.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        GUI.Box(new Rect(1f * scrW, scrH + i * (0.5f * scrH), 1 * scrW, 0.5f * scrH), "Eyes");
+        if (GUI.Button(new Rect(2f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
             SetTexture("Eyes", 1);
         }
         i++;
         #endregion
         #region Clothes
-        if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        if (GUI.Button(new Rect(0.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
         {
 
             SetTexture("Clothes", -1);
         }
-        GUI.Box(new Rect(0.75f * scrW, scrH + i * (0.5f * scrH), 1 * scrW, 0.5f * scrH), "Clothes");
-        if (GUI.Button(new Rect(1.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        GUI.Box(new Rect(1f * scrW, scrH + i * (0.5f * scrH), 1 * scrW, 0.5f * scrH), "Clothes");
+        if (GUI.Button(new Rect(2f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
             SetTexture("Clothes", 1);
         }
         i++;
         #endregion
         #region Armour
-        if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        if (GUI.Button(new Rect(0.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
         {
 
             SetTexture("Armour", -1);
         }
-        GUI.Box(new Rect(0.75f * scrW, scrH + i * (0.5f * scrH), 1 * scrW, 0.5f * scrH), "Armour");
-        if (GUI.Button(new Rect(1.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        GUI.Box(new Rect(1f * scrW, scrH + i * (0.5f * scrH), 1 * scrW, 0.5f * scrH), "Armour");
+        if (GUI.Button(new Rect(2f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
             SetTexture("Armour", 1);
         }
@@ -359,7 +375,7 @@ public class CustomisationSet : MonoBehaviour
         #region Random Reset
         //create 2 buttons one Random and one Reset
         //Random will feed a random amount to the direction 
-        if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), scrW, 0.5f * scrH), "Random"))
+        if (GUI.Button(new Rect(0.5f * scrW, scrH + i * (0.5f * scrH), scrW, 0.5f * scrH), "Random"))
         {
             SetTexture("Skin", Random.Range(0, skinMax - 1));
             SetTexture("Hair", Random.Range(0, hairMax - 1));
@@ -369,7 +385,7 @@ public class CustomisationSet : MonoBehaviour
             SetTexture("Mouth", Random.Range(0, mouthMax - 1));
         }
         //reset will set all to 0 both use SetTexture
-        if (GUI.Button(new Rect(1.25f * scrW, scrH + i * (0.5f * scrH), scrW, 0.5f * scrH), "Reset"))
+        if (GUI.Button(new Rect(1.5f * scrW, scrH + i * (0.5f * scrH), scrW, 0.5f * scrH), "Reset"))
         {
             SetTexture("Skin", skinIndex = -1);
             SetTexture("Hair", hairIndex = 0);
@@ -382,22 +398,32 @@ public class CustomisationSet : MonoBehaviour
         #endregion
         #region Character Name and Save & Play
         //name of our character equals a GUI TextField that holds our character name and limit of characters
-        charName = GUI.TextField(new Rect(11f * scrW, 0.75f * scrH, 1.75f * scrW, .5f * scrH), charName, 16);
-        GUI.Box(new Rect(11f * scrW, 1.3f * scrH, 1.75f * scrW, 0.5f * scrH), "The " + charClass);
+        charName = GUI.TextField(new Rect(11f * scrW, 1f * scrH, 1.75f * scrW, .35f * scrH), charName, 16);
+        GUI.Box(new Rect(11f * scrW, 1.35f * scrH, 1.75f * scrW, 0.4f * scrH), "The " + charClass);
         //move down the screen with the int using ++ each grouping of GUI elements are moved using this
         i++;
         //GUI Button called Save and Play
-        if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Save and Play"))
+        if (GUI.Button(new Rect(13.75f * scrW, scrH * 4.75f, 2 * scrW, 0.5f * scrH), "Save and Play") && points == 0)
         {
+
+
             //this button will run the save function and also load into the game level
             Save();
             SceneManager.LoadScene(2);
+
+
+        }
+        if (points != 0)
+        {
+            GUI.Box(new Rect(13.6f * scrW, scrH * 5.5f, 2.3f * scrW, .75f * scrH), "All points must be\nspent before continuing!");
         }
         #endregion
+        #endregion
+        #region Skills
         i = 0;
         GUI.Box(new Rect(4.1f * scrW, scrH + i * (0.5f * scrH), 1f * scrW, 0.5f * scrH), "Skills:");
         i++;
-        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "-"))
         {
             if (strength != baseStrength)
             {
@@ -410,7 +436,7 @@ public class CustomisationSet : MonoBehaviour
             }
         }
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Strength = " + strength);
-        if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "+"))
         {
             if (strength != 10 && points != 0)
             {
@@ -419,7 +445,7 @@ public class CustomisationSet : MonoBehaviour
             }
         }
         i++;
-        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "-"))
         {
             if (dexterity != baseDexterity)
             {
@@ -432,7 +458,7 @@ public class CustomisationSet : MonoBehaviour
             }
         }
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Dexterity = " + dexterity);
-        if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "+"))
         {
             if (dexterity != 10 && points != 0)
             {
@@ -441,7 +467,7 @@ public class CustomisationSet : MonoBehaviour
             }
         }
         i++;
-        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "-"))
         {
             if (constitution != baseConstitution)
             {
@@ -454,7 +480,7 @@ public class CustomisationSet : MonoBehaviour
             }
         }
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Constitution = " + constitution);
-        if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "+"))
         {
             if (constitution != 10 && points != 0)
             {
@@ -463,7 +489,7 @@ public class CustomisationSet : MonoBehaviour
             }
         }
         i++;
-        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "-"))
         {
             if (inteligence != baseInteligence)
             {
@@ -476,7 +502,7 @@ public class CustomisationSet : MonoBehaviour
             }
         }
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Inteligence = " + inteligence);
-        if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "+"))
         {
             if (inteligence != 10 && points != 0)
             {
@@ -485,7 +511,7 @@ public class CustomisationSet : MonoBehaviour
             }
         }
         i++;
-        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "-"))
         {
             if (wisdom != baseWisdom)
             {
@@ -498,7 +524,7 @@ public class CustomisationSet : MonoBehaviour
             }
         }
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Wisdom = " + wisdom);
-        if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "+"))
         {
             if (wisdom != 10 && points != 0)
             {
@@ -507,7 +533,7 @@ public class CustomisationSet : MonoBehaviour
             }
         }
         i++;
-        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "-"))
         {
             if (charisma != baseCharisma)
             {
@@ -520,7 +546,7 @@ public class CustomisationSet : MonoBehaviour
             }
         }
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 1.75f * scrW, 0.5f * scrH), "Chariama = " + charisma);
-        if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(5.5f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "+"))
         {
             if (charisma != 10 && points != 0)
             {
@@ -542,7 +568,7 @@ public class CustomisationSet : MonoBehaviour
             inteligence = 1;
             wisdom = 1;
             charisma = 1;
-            points = 5;
+            points = startPoints;
         }
         i++;
         if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Bard"))
@@ -554,7 +580,7 @@ public class CustomisationSet : MonoBehaviour
             inteligence = 1;
             wisdom = 1;
             charisma = 5;
-            points = 5;
+            points = startPoints;
         }
         i++;
         if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Druid"))
@@ -566,7 +592,7 @@ public class CustomisationSet : MonoBehaviour
             inteligence = 4;
             wisdom = 1;
             charisma = 1;
-            points = 5;
+            points = startPoints;
         }
         i++;
         if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Monk"))
@@ -578,7 +604,7 @@ public class CustomisationSet : MonoBehaviour
             inteligence = 1;
             wisdom = 5;
             charisma = 1;
-            points = 5;
+            points = startPoints;
         }
         i++;
         if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Paladin"))
@@ -590,7 +616,7 @@ public class CustomisationSet : MonoBehaviour
             inteligence = 1;
             wisdom = 1;
             charisma = 1;
-            points = 5;
+            points = startPoints;
         }
         i++;
         if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Ranger"))
@@ -602,7 +628,7 @@ public class CustomisationSet : MonoBehaviour
             inteligence = 1;
             wisdom = 1;
             charisma = 1;
-            points = 5;
+            points = startPoints;
         }
         i++;
         if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Sorcerer"))
@@ -614,7 +640,7 @@ public class CustomisationSet : MonoBehaviour
             inteligence = 2;
             wisdom = 3;
             charisma = 1;
-            points = 5;
+            points = startPoints;
         }
         i++;
         if (GUI.Button(new Rect(7 * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Warlock"))
@@ -626,9 +652,9 @@ public class CustomisationSet : MonoBehaviour
             inteligence = 2;
             wisdom = 3;
             charisma = 1;
-            points = 5;
+            points = startPoints;
         }
-
+        #region Description
         if (charClass == CharacterClass.Barbarian)
         {
             baseStrength = 3;
@@ -638,6 +664,7 @@ public class CustomisationSet : MonoBehaviour
             baseWisdom = 1;
             baseCharisma = 1;
             GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nBarbarians know nothing but to smash and bash.\n\nStrength + 2 | Constitution + 2");
+            GUI.Box(new Rect(9f * scrW, scrH * 1.5f, 0.5f * scrW, 0.5f * scrH), "<");
         }
         if (charClass == CharacterClass.Bard)
         {
@@ -648,6 +675,7 @@ public class CustomisationSet : MonoBehaviour
             baseWisdom = 1;
             baseCharisma = 5;
             GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nBards have a way with words.\nWith the right words you can change anyones mind.\n\nCharisma + 4");
+            GUI.Box(new Rect(9f * scrW, scrH * 2f, 0.5f * scrW, 0.5f * scrH), "<");
         }
         if (charClass == CharacterClass.Druid)
         {
@@ -658,6 +686,7 @@ public class CustomisationSet : MonoBehaviour
             baseWisdom = 2;
             baseCharisma = 1;
             GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nDruids learn a bit from living in the woods.\n\nDexterity + 1 | Inteligence + 3");
+            GUI.Box(new Rect(9f * scrW, scrH * 2.5f, 0.5f * scrW, 0.5f * scrH), "<");
         }
         if (charClass == CharacterClass.Monk)
         {
@@ -668,6 +697,7 @@ public class CustomisationSet : MonoBehaviour
             baseWisdom = 5;
             baseCharisma = 1;
             GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nMonks are full of wisdom.\nSome might say the mind is the most powerful weapon.\n\nWisdom + 4");
+            GUI.Box(new Rect(9f * scrW, scrH * 3f, 0.5f * scrW, 0.5f * scrH), "<");
         }
         if (charClass == CharacterClass.Paladin)
         {
@@ -678,6 +708,7 @@ public class CustomisationSet : MonoBehaviour
             baseWisdom = 1;
             baseCharisma = 1;
             GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nPaladins are the ideal hero.\nTough, agile and strong.\n\nStrength + 1 | Dexterity + 1 | Constitution + 2");
+            GUI.Box(new Rect(9f * scrW, scrH * 3.5f, 0.5f * scrW, 0.5f * scrH), "<");
         }
         if (charClass == CharacterClass.Ranger)
         {
@@ -688,6 +719,7 @@ public class CustomisationSet : MonoBehaviour
             baseWisdom = 1;
             baseCharisma = 1;
             GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nRangers are swift.\nCan't hit what you can't see.\n\nDexterity + 4");
+            GUI.Box(new Rect(9f * scrW, scrH * 4f, 0.5f * scrW, 0.5f * scrH), "<");
         }
         if (charClass == CharacterClass.Sorcerer)
         {
@@ -698,6 +730,7 @@ public class CustomisationSet : MonoBehaviour
             baseWisdom = 3;
             baseCharisma = 1;
             GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nSorcerers use magic to attack and use agility to not get hit.\n\nDexterity + 1 | Inteligence + 1 | Wisdom + 2");
+            GUI.Box(new Rect(9f * scrW, scrH * 4.5f, 0.5f * scrW, 0.5f * scrH), "<");
         }
         if (charClass == CharacterClass.Warlock)
         {
@@ -708,8 +741,14 @@ public class CustomisationSet : MonoBehaviour
             baseWisdom = 3;
             baseCharisma = 1;
             GUI.Box(new Rect(0.5f * scrW, 6 * scrH, 8 * scrW, 2.5f * scrH), "\nWarlocks use magic and can take a hit.\n\nConstitution + 1 | Inteligence + 1 | Wisdom + 2");
+            GUI.Box(new Rect(9f * scrW, scrH * 5f, 0.5f * scrW, 0.5f * scrH), "<");
         }
-
+        #endregion
+        #endregion
+        if (GUI.Button(new Rect(13.75f * scrW, scrH * 4f, 2 * scrW, 0.5f * scrH), "Back"))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
     #endregion
 
