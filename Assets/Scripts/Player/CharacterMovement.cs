@@ -82,6 +82,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (controller.isGrounded)
         {
+
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));//sets the direction the player is going
             moveDirection = transform.TransformDirection(moveDirection);//makes the player go in a direction
             moveDirection *= speed;//makes the player go a certain speed
