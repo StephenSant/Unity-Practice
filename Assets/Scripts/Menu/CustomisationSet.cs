@@ -111,7 +111,7 @@ public class CustomisationSet : MonoBehaviour
         character = GameObject.Find("Mesh").GetComponent<SkinnedMeshRenderer>();
 
         //SetTexture skin, hair, mouth, eyes to the first texture 0
-        SetTexture("Skin", skinIndex = -1);
+        SetTexture("Skin", skinIndex = 1);
         SetTexture("Hair", hairIndex = 0);
         SetTexture("Eyes", eyesIndex = 0);
         SetTexture("Clothes", clothesIndex = 4);
@@ -261,7 +261,7 @@ public class CustomisationSet : MonoBehaviour
         //SetString CharacterName
         PlayerPrefs.SetString("CharacterName", charName);
 
-        //SetInt for Stats
+        //Saving Stats
         PlayerPrefs.SetInt("Strength", strength);
         PlayerPrefs.SetInt("Dexterity", dexterity);
         PlayerPrefs.SetInt("Constitution", constitution);
@@ -269,7 +269,7 @@ public class CustomisationSet : MonoBehaviour
         PlayerPrefs.SetInt("Wisdom", wisdom);
         PlayerPrefs.SetInt("Charisma", charisma);
 
-        //
+        //Saving Class
         PlayerPrefs.SetString("Class", "" + charClass);
     }
     #endregion

@@ -33,6 +33,8 @@ public class CharacterMovement : MonoBehaviour
     [Header("Y Rotation Clamp")]//max and min Y rotation
     public float minimumY = -90.0f;
     public float maximumY = 90.0f;
+
+    public Animator anim;
     #endregion
     #region Start
     void Start()
@@ -40,6 +42,7 @@ public class CharacterMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();//finds the player controller component
         charH = GetComponent<CharacterHandler>();
         myCamera = GameObject.Find("Main Camera");//finds the camera
+        anim = GetComponent<Animator>();
         spawnPoint = transform.position;//sets spawnpoint
         Cursor.lockState = CursorLockMode.Locked;//locks the cursor position
         Cursor.visible = false;//makes the cursor invisible 
@@ -52,6 +55,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         #region Movement
         if (Input.GetKey(KeyCode.LeftShift) && staminaDelay >= staminaCap)
         {
@@ -64,12 +68,14 @@ public class CharacterMovement : MonoBehaviour
         {
             speed = runSpeed;
             stamina--;
+            anim.SetBool("Running", true);
         }
         else
         {
             speed = walkSpeed;
             stamina++;
             staminaDelay++;
+            anim.SetBool("Running", false);
         }
         if (stamina >= staminaCap)
         {
@@ -93,6 +99,14 @@ public class CharacterMovement : MonoBehaviour
         }
         moveDirection.y -= gravity * Time.deltaTime;//gives gravity
         controller.Move(moveDirection * Time.deltaTime);//makes the player move
+        if (Input.GetAxis("Horizontal") > 0.1f || Input.GetAxis("Horizontal") < -0.1f || Input.GetAxis("Vertical") < -0.1f || Input.GetAxis("Vertical") > 0.1f && !running)
+        {
+            anim.SetBool("Moving", true);
+        }
+        else
+        {
+            anim.SetBool("Moving", false);
+        }
         #endregion
         #region Axis'
         //switches between which axis the camera can move

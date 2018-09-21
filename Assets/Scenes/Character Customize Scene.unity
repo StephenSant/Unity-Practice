@@ -720,9 +720,9 @@ MonoBehaviour:
   clothesIndex: 0
   armourIndex: 0
   character: {fileID: 0}
-  skinMax: 4
+  skinMax: 5
   hairMax: 5
-  mouthMax: 3
+  mouthMax: 4
   eyesMax: 5
   clothesMax: 11
   armourMax: 11
